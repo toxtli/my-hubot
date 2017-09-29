@@ -8,7 +8,28 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
+response = [
+  "you're welcome",
+  "no problem",
+  "not a problem",
+  "no problem at all",
+  "don’t mention it",
+  "it’s no bother",
+  "it’s my pleasure",
+  "my pleasure",
+  "it’s nothing",
+  "think nothing of it",
+  "no, no. thank you!",
+  "sure thing"
+]
+
 module.exports = (robot) ->
+
+  robot.respond /thank(s| you)/i, (msg) ->
+    msg.send msg.random response
+  thanks = new RegExp "thank(s| you) #{robot.name}", "i"
+  robot.hear thanks, (msg) ->
+    msg.send msg.random response
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
